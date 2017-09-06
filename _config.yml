@@ -13,7 +13,7 @@ exclude: ["less","node_modules","Gruntfile.js","package.json","README.md"]
 # Comments
 disqus_shortname:   linfeng365
 
-title:
+title: linfeng365
 url: https://linfeng365.github.io
 feed: /atom.xml
 author_info: <a href="/">linfeng365</a>
