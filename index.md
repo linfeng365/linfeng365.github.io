@@ -7,8 +7,8 @@ layout: home
         <ul class="artical-cate">
             <li class="on"><a href="/"><span>Blog</span></a></li>
             <li style="text-align:center"><a href="/Notes"><span>Notes</span></a></li>
-            <li style="text-align:right"><a href="/Stories"><span>Stories</span></a></li>
-        </ul>
+<!--             <li style="text-align:right"><a href="/Stories"><span>Stories</span></a></li>
+ -->        </ul>
 
         <div class="cate-bar"><span id="cateBar"></span></div>
 
