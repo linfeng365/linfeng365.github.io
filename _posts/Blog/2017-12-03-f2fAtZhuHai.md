@@ -1,10 +1,9 @@
-2017-12-03-f2fAtZhuHai
----
+---  
 layout: post
 title: 拜访大妈 &  Python 编程班聚会
 description: 珠海f2f
 category: blog
----
+---  
 
 # 拜访大妈 &  Python 编程班聚会
 
