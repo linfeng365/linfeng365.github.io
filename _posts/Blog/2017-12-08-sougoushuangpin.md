@@ -2,7 +2,7 @@
 layout: post
 title: 用回"小鹤双拼方案"
 description: 弃坑"搜狗双拼方案"
-category: note
+category: blog
 ---
 
 # 弃坑"搜狗双拼方案"  
