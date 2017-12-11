@@ -7,7 +7,7 @@ category: blog
 
 # 《文思泉涌》笔记
   
-https://book.douban.com/subject/26613805/  
+[https://book.douban.com/subject/26613805/](https://book.douban.com/subject/26613805/)  
   
   
 如果你觉得写作很难，那是因为写作的确很难。  
@@ -22,5 +22,8 @@ https://book.douban.com/subject/26613805/
 **解决之道：**  
 让别人尽情拖延、做白日梦和抱怨去吧，你所要做的就是：**坐下来，写。**
 
-![](media/15128264983862/15128266391723.jpg)
+
+
+ChangeLog:  
+2017-12-11 12:35 初稿  
 

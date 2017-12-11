@@ -26,7 +26,7 @@ category: blog
 对于单韵母字，需要在前面输入字母O+韵母。例如：a=OA ai=OL an=OJ ang=OH   ao=OK e=OE ei=OZ en=OF ;eng=OG er=OR o=OO ou=OB  
   
 搜狗双拼_百度百科   
-https://baike.baidu.com/item/搜狗双拼/7587355?/  
+[https://baike.baidu.com/item/搜狗双拼/7587355?/](https://baike.baidu.com/item/搜狗双拼/7587355?/)  
   
 小鹤双拼方案：  
 主要是韵母键位的设计方案，单声母键位不变  
@@ -38,7 +38,7 @@ https://baike.baidu.com/item/搜狗双拼/7587355?/
 三字母韵母，零声母 + 韵母所在键，如： 昂＝ah  
   
 小鹤双拼——双拼方案    
-http://www.flypy.com/pin.html  
+[http://www.flypy.com/pin.html](http://www.flypy.com/pin.html)  
   
 
 ***
