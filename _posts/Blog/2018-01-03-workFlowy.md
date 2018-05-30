@@ -16,12 +16,11 @@ https://www.appinn.com/workflowy/
 2. WorkFlowy iPhone 手机版下载  
 https://itunes.apple.com/cn/app/workflowy/id551139514?l=en&mt=8
 
-3. WorkFlowy 注册邀请 (谢谢)  
-https://workflowy.com/invite/51cb4365.lnx (阅读原文)
+3. WorkFlowy 我的注册邀请 (谢谢)  
+https://workflowy.com/invite/51cb4365.lnx
 
 4. 复杂运用案例  
-卡片助力输入输出，工具我选 WorkFlowy | ishanshan's blog  
-http://ishanshan.top/selfedu/HbOutputOwetoWorkFlowy.html?nsukey=9hpqN+m2OfUW62oD0REn2ySLzP0XOc1Sj8hSGSVCEcFQnWlbHrIRML99uvBOwfqq/OOFfWKf3UrAifmw3Knz74/5BoSWg0GFmRXr2EG1Za2+e4dyJYwwQPWCUwSMeVn+mvcDWFhl8X7gfUHgz8SoS10xjmYJkSc6FcOQijyt/Ms=
+[卡片助力输入输出，工具我选 WorkFlowy | ishanshan's blog ](http://ishanshan.top/selfedu/HbOutputOwetoWorkFlowy.html?nsukey=9hpqN+m2OfUW62oD0REn2ySLzP0XOc1Sj8hSGSVCEcFQnWlbHrIRML99uvBOwfqq/OOFfWKf3UrAifmw3Knz74/5BoSWg0GFmRXr2EG1Za2+e4dyJYwwQPWCUwSMeVn+mvcDWFhl8X7gfUHgz8SoS10xjmYJkSc6FcOQijyt/Ms=)
 
 
 ## 电脑上基本快捷键:
@@ -29,6 +28,8 @@ http://ishanshan.top/selfedu/HbOutputOwetoWorkFlowy.html?nsukey=9hpqN+m2OfUW62oD
 * Tab 右缩进。
 * Shift + Tab 左缩进。
 * Shift + Enter 输入备注。
+* Cmd + > 进入条目
+* Cmd + < 退出条目
 * Cmd + Enter 完成（ cmd + O  显示或隐藏完成项目）。
 * Cmd + z 撤销。
 * Cmd + Shift + z 不要撤销。
@@ -55,6 +56,7 @@ https://workflowy.com/s/Hk2H.qMd7hkWhcq
 ## 更多实践
 
 ChangeLog:  
-2018-01-01 17:26 lino7ofeng 初稿  
+2018-01-01 17:26 linfeng365 初稿  
+2018-05-30 19:20 修正 URL
 
 
