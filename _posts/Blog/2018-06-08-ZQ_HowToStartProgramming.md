@@ -1,7 +1,7 @@
 ---
 layout: post
-title: ZoomQuiet: 如何开始编程
-description: ZQ_HowToStartProgramming
+title: Zoom.Quiet: 如何开始编程
+description: ZQ.HowToStartProgramming
 category: blog
 ---
 
