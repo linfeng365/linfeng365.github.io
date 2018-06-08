@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Daybreak Diary
+title: 晨间日记(Daybreak Diary)摘录
 description: 晨间日记摘录
 category: blog
 ---
