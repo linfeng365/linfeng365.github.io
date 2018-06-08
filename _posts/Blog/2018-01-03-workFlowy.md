@@ -10,6 +10,9 @@ category: blog
 朋友说，注册了。但不知道怎么用。确实，忘记介绍了。先看这篇吧。
 
 ## 印象
+
+> WorkFlowy 是清单(list)  
+
 1. WorkFlowy 初识  
 [https://www.appinn.com/workflowy/](https://www.appinn.com/workflowy/)
 
