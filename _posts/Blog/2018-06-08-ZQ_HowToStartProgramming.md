@@ -1,7 +1,7 @@
 ---
 layout: post
-title: Zoom.Quiet: 如何开始编程
-description: ZQ.HowToStartProgramming
+title: 晨间日记(Daybreak Diary)摘录
+description: 晨间日记摘录
 category: blog
 ---
 
