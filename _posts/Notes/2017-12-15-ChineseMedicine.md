@@ -7,6 +7,12 @@ category: notes
 
 # 远离中药
 
+药监局又发出最新公告，双黄连注射液 也被拉入「儿童禁用黑名单」！
+https://mp.weixin.qq.com/s/hCaOKBye8KmQ6RJ2oztEGA
+
+国家药监局：双黄连注射液禁用于4岁以下婴幼儿--财经--人民网  
+http://finance.people.com.cn/n1/2018/0612/c1004-30052581.html
+
  
 最坑爹的牙膏 (云南白药牙膏)  
 https://zhuanlan.zhihu.com/p/31880232
