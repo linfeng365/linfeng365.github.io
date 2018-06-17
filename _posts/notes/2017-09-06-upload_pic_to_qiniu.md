@@ -2,7 +2,7 @@
 layout: post
 title: MWeb 七牛图床
 description: 很方便上传图片获得外链方法。
-category: notes
+category: blog
 ---
 # MWeb 七牛图床
 

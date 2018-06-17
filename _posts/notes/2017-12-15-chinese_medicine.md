@@ -2,7 +2,7 @@
 layout: post
 title: 远离中药
 description: Chinese Medicine 资料集
-category: notes
+category: blog
 ---
 
 # 远离中药

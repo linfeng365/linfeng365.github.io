@@ -2,7 +2,7 @@
 layout: post
 title: Karabiner 键盘修改
 description: 键盘设置目的是让手不要离开默认位置。
-category: notes
+category: blog
 ---
 
 # Karabiner 键盘修改
