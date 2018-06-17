@@ -6,7 +6,7 @@ layout: home
     <div class="section">
         <ul class="artical-cate">
             <li class="on"><a href="/"><span>Blog</span></a></li>
-            <li style="text-align:center"><a href="/Notes"><span>Notes</span></a></li>
+            <!-- <li style="text-align:center"><a href="/Notes"><span>Notes</span></a></li> -->
 <!--             <li style="text-align:right"><a href="/Stories"><span>Stories</span></a></li>
  -->        </ul>
 
@@ -18,6 +18,13 @@ layout: home
                 <h2><a href="{{ post.url }}">{{ post.title }}</a></h2>
                 <div class="title-desc">{{ post.description }}</div>
                 <div class="entry-date">{{ page.date|date:"%Y-%m-%d" }}</div>
+                <div id="content">
+    <div class="entry">
+        <h1 class="entry-title"><a href="{{ page.url }}" title="{{ page.title }}">{{ page.title }}</a></h1>
+        <p class="entry-date">{{ page.date|date:"%Y-%m-%d" }}</p>
+        {{ content }}
+        <br>    
+    </div>
             </li>
         {% endfor %}
         </ul>
@@ -26,3 +33,4 @@ layout: home
     </div>
 
 </div>
+ 
