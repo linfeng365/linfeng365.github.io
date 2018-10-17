@@ -1,6 +1,6 @@
 ---
 layout: post
-title: review 文档法
+title: review文档法
 description: "想法的产生和记录"的实践
 category: blog
 ---
