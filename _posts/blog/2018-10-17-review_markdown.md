@@ -1,10 +1,9 @@
 ---
 layout: post
 title: review 文档法
-description: "想法的产生和记录"的实践
+description: 想法的产生和记录'的实践
 category: blog
 ---
-
 
 ## 一 基于:
 想法的产生和记录 | linfeng365  
