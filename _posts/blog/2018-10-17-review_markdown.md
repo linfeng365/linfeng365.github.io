@@ -9,8 +9,6 @@ category: blog
 想法的产生和记录 | linfeng365   
 [http://linfeng365.com/blog/idea_and_record.html](http://linfeng365.com/blog/idea_and_record.html)
 
-
-和方法:
 手帐的正确姿势 | linfeng365  
 [http://linfeng365.com/blog/take_down.html](http://linfeng365.com/blog/take_down.html) 
 
