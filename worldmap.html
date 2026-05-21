@@ -36,14 +36,14 @@
   .panel textarea:focus { border-color: #555; }
   .panel .search-row { display: flex; gap: 6px; margin-top: 6px; }
   .panel .search-row input {
-    flex: 1; background: #222; border: 1px solid #3a3a3a; border-radius: 4px;
+    width: 120px; flex: none; background: #222; border: 1px solid #3a3a3a; border-radius: 4px;
     color: #ddd; font-size: 12px; padding: 5px 8px; outline: none;
   }
   .panel .search-row input:focus { border-color: #555; }
   .panel .search-row button {
-    flex: 0 0 54px; padding: 5px 0; border: none; border-radius: 4px;
+    flex: 0 0 auto; padding: 5px 8px; border: none; border-radius: 4px;
     font-size: 11px; cursor: pointer; transition: background .15s; letter-spacing: 0.5px;
-    background: #444; color: #ccc;
+    background: #444; color: #ccc; white-space: nowrap;
   }
   .panel .search-row button:hover { background: #555; color: #fff; }
   .panel .search-row button:disabled { opacity: 0.4; cursor: not-allowed; }
@@ -95,6 +95,16 @@
 
   .panel .hint { color: #555; font-size: 10px; margin-top: 6px; line-height: 1.5; }
 
+  .panel-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px; }
+  .panel-toggle {
+    position: absolute; top: 4px; right: 6px;
+    background: none; border: none; color: #555; cursor: pointer;
+    font-size: 10px; line-height: 1; padding: 2px 4px; transition: color .15s;
+    letter-spacing: 0.5px;
+  }
+  .panel-toggle:hover { color: #aaa; }
+  .panel-body.collapsed { display: none; }
+
   .panel .btn-undo { background: #3a2a2a; color: #c97; }
   .panel .btn-undo:hover { background: #4a3a3a; color: #da8; }
   .panel .btn-undo:disabled { opacity: 0.3; cursor: not-allowed; }
@@ -115,60 +125,65 @@
 <div id="map"></div>
 
 <div class="panel">
-  <h3>标记地区</h3>
-  <textarea id="input" placeholder="输入地区名，逗号/换行分隔&#10;例：泰国, 越南, 法国, 埃及, 巴西"></textarea>
+  <button id="btnToggle" class="panel-toggle">收起</button>
+  <div class="panel-header">
+    <h3>标记地区</h3>
+  </div>
+  <div class="panel-body" id="panelBody">
+    <textarea id="input" placeholder="输入地区名，逗号/换行分隔&#10;例：泰国, 越南, 法国, 埃及, 巴西"></textarea>
 
-  <div class="picker-label">颜色</div>
-  <div class="color-row">
-    <div class="swatch" data-color="#e63946" style="background:#e63946" title="红色"></div>
-    <div class="swatch" data-color="#2ec4b6" style="background:#2ec4b6" title="青色"></div>
-    <div class="swatch" data-color="#f4a261" style="background:#f4a261" title="琥珀"></div>
-    <div class="swatch" data-color="#7b2cbf" style="background:#7b2cbf" title="紫色"></div>
-    <div class="swatch" data-color="#2ecc71" style="background:#2ecc71" title="绿色"></div>
-    <div class="swatch" data-color="#b91d1d" style="background:#b91d1d" title="深红"></div>
-    <div class="swatch" data-color="#f1c40f" style="background:#f1c40f" title="黄色"></div>
-  </div>
-  <div class="color-row" style="margin-top:4px">
-    <div class="swatch" data-color="#e67e22" style="background:#e67e22" title="橙色"></div>
-    <div class="swatch" data-color="#e84393" style="background:#e84393" title="粉色"></div>
-    <div class="swatch" data-color="#0984e3" style="background:#0984e3" title="蓝色"></div>
-    <div class="swatch" data-color="#00b894" style="background:#00b894" title="青绿"></div>
-    <div class="swatch active" data-color="#6c5ce7" style="background:#6c5ce7" title="靛蓝"></div>
-    <div class="swatch" data-color="#d63031" style="background:#d63031" title="珊瑚"></div>
-    <div class="swatch" data-color="#00cec9" style="background:#00cec9" title="薄荷"></div>
-  </div>
+    <div class="picker-label">颜色</div>
+    <div class="color-row">
+      <div class="swatch" data-color="#e63946" style="background:#e63946" title="红色"></div>
+      <div class="swatch" data-color="#2ec4b6" style="background:#2ec4b6" title="青色"></div>
+      <div class="swatch" data-color="#f4a261" style="background:#f4a261" title="琥珀"></div>
+      <div class="swatch" data-color="#7b2cbf" style="background:#7b2cbf" title="紫色"></div>
+      <div class="swatch" data-color="#2ecc71" style="background:#2ecc71" title="绿色"></div>
+      <div class="swatch" data-color="#b91d1d" style="background:#b91d1d" title="深红"></div>
+      <div class="swatch" data-color="#f1c40f" style="background:#f1c40f" title="黄色"></div>
+    </div>
+    <div class="color-row" style="margin-top:4px">
+      <div class="swatch" data-color="#e67e22" style="background:#e67e22" title="橙色"></div>
+      <div class="swatch" data-color="#e84393" style="background:#e84393" title="粉色"></div>
+      <div class="swatch" data-color="#0984e3" style="background:#0984e3" title="蓝色"></div>
+      <div class="swatch" data-color="#00b894" style="background:#00b894" title="青绿"></div>
+      <div class="swatch active" data-color="#6c5ce7" style="background:#6c5ce7" title="靛蓝"></div>
+      <div class="swatch" data-color="#d63031" style="background:#d63031" title="珊瑚"></div>
+      <div class="swatch" data-color="#00cec9" style="background:#00cec9" title="薄荷"></div>
+    </div>
 
-  <div class="picker-label">图标</div>
-  <div class="icon-row">
-    <div class="icon-opt dot-symbol active" data-icon="dot" title="圆点">●</div>
-    <div class="icon-opt" data-icon="🚩" title="旗帜">🚩</div>
-    <div class="icon-opt" data-icon="🔺" title="三角">🔺</div>
-    <div class="icon-opt" data-icon="✅" title="对勾">✅</div>
-    <div class="icon-opt" data-icon="🏆" title="奖杯">🏆</div>
-    <div class="icon-opt" data-icon="🏅" title="奖牌">🏅</div>
-    <div class="icon-opt" data-icon="🌟" title="星芒">🌟</div>
-    <div class="icon-opt" data-icon="⭐️" title="星星">⭐️</div>
-    <div class="icon-opt" data-icon="♥️" title="爱心">♥️</div>
-    <div class="icon-opt" data-icon="📍" title="图钉">📍</div>
-    <div class="icon-opt" data-icon="📌" title="别针">📌</div>
-    <div class="icon-opt" data-icon="📮" title="邮筒">📮</div>
-  </div>
+    <div class="picker-label">图标</div>
+    <div class="icon-row">
+      <div class="icon-opt dot-symbol active" data-icon="dot" title="圆点">●</div>
+      <div class="icon-opt" data-icon="🚩" title="旗帜">🚩</div>
+      <div class="icon-opt" data-icon="🔺" title="三角">🔺</div>
+      <div class="icon-opt" data-icon="✅" title="对勾">✅</div>
+      <div class="icon-opt" data-icon="🏆" title="奖杯">🏆</div>
+      <div class="icon-opt" data-icon="🏅" title="奖牌">🏅</div>
+      <div class="icon-opt" data-icon="🌟" title="星芒">🌟</div>
+      <div class="icon-opt" data-icon="⭐️" title="星星">⭐️</div>
+      <div class="icon-opt" data-icon="♥️" title="爱心">♥️</div>
+      <div class="icon-opt" data-icon="📍" title="图钉">📍</div>
+      <div class="icon-opt" data-icon="📌" title="别针">📌</div>
+      <div class="icon-opt" data-icon="📮" title="邮筒">📮</div>
+    </div>
 
-  <div class="row">
-    <button class="btn-mark" id="btnMark">标记</button>
-    <button class="btn-clear" id="btnClear">清空</button>
-    
+    <div class="row">
+      <button class="btn-mark" id="btnMark">标记</button>
+      <button class="btn-clear" id="btnClear">清空</button>
+    </div>
+    <div class="row">
+      <button class="btn-reset" id="btnReset">重置</button>
+      <button class="btn-undo" id="btnUndo" disabled>撤销</button>
+    </div>
+    <div class="status" id="status"></div>
+    <div class="search-row">
+      <input id="searchInput" placeholder="搜索城市名…">
+      <button id="btnSearch">查询&amp;增加</button>
+    </div>
+    <div class="hint">中/英文皆可 · 全球300+城市 </div>
   </div>
-  <div class="row">
-    <button class="btn-reset" id="btnReset">重置</button>
-    <button class="btn-undo" id="btnUndo" disabled>撤销</button>
-  </div>
-  <div class="search-row">
-    <input id="searchInput" placeholder="在线搜索城市名…">
-    <button id="btnSearch">查询&amp;增加</button>
-  </div>
-  <div class="status" id="status"></div>
-  <div class="hint">中/英文皆可 · 全球300+城市</div>
+  <div class="hint" style="margin-top:4px"> World Map Markup 在线地图标记</div>
 </div>
 
 <div class="watermark">WORLD MAP<br><span class="credit">by linfeng365</span></div>
@@ -1661,6 +1676,23 @@ function searchAndAdd(query) {
 
 // ─── ui ───
 let resetState = 0;
+let panelCollapsed = false;
+
+document.getElementById('btnToggle').addEventListener('click', () => {
+  panelCollapsed = !panelCollapsed;
+  document.getElementById('panelBody').classList.toggle('collapsed', panelCollapsed);
+  document.getElementById('btnToggle').textContent = panelCollapsed ? '展开' : '收起';
+  try { localStorage.setItem('wm_panel', panelCollapsed ? '1' : '0'); } catch(e) {}
+});
+
+// restore panel state
+try {
+  if (localStorage.getItem('wm_panel') === '1') {
+    panelCollapsed = true;
+    document.getElementById('panelBody').classList.add('collapsed');
+    document.getElementById('btnToggle').textContent = '展开';
+  }
+} catch(e) {}
 
 document.getElementById('btnMark').addEventListener('click', () => {
   resetState = 0;
