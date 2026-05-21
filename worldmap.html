@@ -104,7 +104,7 @@
 
   <div class="picker-label">颜色</div>
   <div class="color-row">
-    <div class="swatch active" data-color="#e63946" style="background:#e63946" title="红色"></div>
+    <div class="swatch" data-color="#e63946" style="background:#e63946" title="红色"></div>
     <div class="swatch" data-color="#2ec4b6" style="background:#2ec4b6" title="青色"></div>
     <div class="swatch" data-color="#f4a261" style="background:#f4a261" title="琥珀"></div>
     <div class="swatch" data-color="#7b2cbf" style="background:#7b2cbf" title="紫色"></div>
@@ -117,7 +117,7 @@
     <div class="swatch" data-color="#e84393" style="background:#e84393" title="粉色"></div>
     <div class="swatch" data-color="#0984e3" style="background:#0984e3" title="蓝色"></div>
     <div class="swatch" data-color="#00b894" style="background:#00b894" title="青绿"></div>
-    <div class="swatch" data-color="#6c5ce7" style="background:#6c5ce7" title="靛蓝"></div>
+    <div class="swatch active" data-color="#6c5ce7" style="background:#6c5ce7" title="靛蓝"></div>
     <div class="swatch" data-color="#d63031" style="background:#d63031" title="珊瑚"></div>
     <div class="swatch" data-color="#00cec9" style="background:#00cec9" title="薄荷"></div>
   </div>
@@ -414,6 +414,26 @@ function clearAllMarkers() {
 
 // ─── place defaults ───
 const defaults = [
+  { name: '印度',     lat: 20.59, lng: 78.96, color: '#0984e3', icon: 'dot' },
+  { name: '马来西亚',   lat: 4.21, lng: 102.0, color: '#0984e3', icon: 'dot' },
+  { name: '印度尼西亚', lat: -0.79, lng: 113.92, color: '#0984e3', icon: 'dot' },
+  { name: '日本',     lat: 36.20, lng: 138.25, color: '#0984e3', icon: 'dot' },
+  { name: '韩国',     lat: 35.91, lng: 127.77, color: '#0984e3', icon: 'dot' },
+  { name: '罗马尼亚',   lat: 45.94, lng: 24.97, color: '#0984e3', icon: 'dot' },
+  { name: '德国',     lat: 51.17, lng: 10.45, color: '#0984e3', icon: 'dot' },
+  { name: '意大利',    lat: 41.87, lng: 12.57, color: '#0984e3', icon: 'dot' },
+  { name: '匈牙利',    lat: 47.16, lng: 19.50, color: '#0984e3', icon: 'dot' },
+  { name: '澳大利亚',   lat: -25.27, lng: 133.78, color: '#0984e3', icon: 'dot' },
+  { name: '卡塔尔',    lat: 25.35, lng: 51.18, color: '#0984e3', icon: 'dot' },
+  { name: '阿联酋',    lat: 23.42, lng: 53.85, color: '#0984e3', icon: 'dot' },
+  { name: '新加坡',    lat: 1.35, lng: 103.82, color: '#0984e3', icon: 'dot' },
+  { name: '法国',     lat: 46.60, lng: 1.88, color: '#0984e3', icon: 'dot' },
+  { name: '上海市',    lat: 31.23, lng: 121.47, color: '#0984e3', icon: '⭐️' },
+];
+defaults.forEach(c => addMarkerToMap(c.lat, c.lng, c.name, c.color, c.icon));
+
+// original colors for easter egg
+const origDefaults = [
   { name: '印度',     lat: 20.59, lng: 78.96, color: '#e63946', icon: 'dot' },
   { name: '马来西亚',   lat: 4.21, lng: 102.0, color: '#e63946', icon: 'dot' },
   { name: '印度尼西亚', lat: -0.79, lng: 113.92, color: '#e63946', icon: 'dot' },
@@ -427,12 +447,12 @@ const defaults = [
   { name: '卡塔尔',    lat: 25.35, lng: 51.18, color: '#b91d1d', icon: 'dot' },
   { name: '阿联酋',    lat: 23.42, lng: 53.85, color: '#b91d1d', icon: 'dot' },
   { name: '新加坡',    lat: 1.35, lng: 103.82, color: '#b91d1d', icon: 'dot' },
+  { name: '法国',     lat: 46.60, lng: 1.88, color: '#e63946', icon: 'dot' },
   { name: '上海市',    lat: 31.23, lng: 121.47, color: '#e63946', icon: '⭐️' },
 ];
-defaults.forEach(c => addMarkerToMap(c.lat, c.lng, c.name, c.color, c.icon));
 
 // ─── color selection ───
-let activeColor = '#e63946';
+let activeColor = '#6c5ce7';
 document.querySelectorAll('.swatch').forEach(el => {
   el.addEventListener('click', () => {
     document.querySelectorAll('.swatch').forEach(s => s.classList.remove('active'));
@@ -506,11 +526,15 @@ document.getElementById('btnReset').addEventListener('click', () => {
     defaults.forEach(c => addMarkerToMap(c.lat, c.lng, c.name, c.color, c.icon));
     resetState = 1;
     showStatus('已重置为默认标记', 'ok');
-  } else {
+  } else if (resetState === 1) {
     const sh = defaults.find(c => c.name === '上海市');
     if (sh) addMarkerToMap(sh.lat, sh.lng, sh.name, sh.color, sh.icon);
-    resetState = 0;
+    resetState = 2;
     showStatus('✨ 只保留上海市', 'ok');
+  } else {
+    origDefaults.forEach(c => addMarkerToMap(c.lat, c.lng, c.name, c.color, c.icon));
+    resetState = 0;
+    showStatus('🎨 恢复原始配色', 'ok');
   }
 });
 </script>
