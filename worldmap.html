@@ -34,6 +34,19 @@
     color: #ddd; font-size: 12px; padding: 6px 8px; resize: vertical; outline: none;
   }
   .panel textarea:focus { border-color: #555; }
+  .panel .search-row { display: flex; gap: 6px; margin-top: 6px; }
+  .panel .search-row input {
+    flex: 1; background: #222; border: 1px solid #3a3a3a; border-radius: 4px;
+    color: #ddd; font-size: 12px; padding: 5px 8px; outline: none;
+  }
+  .panel .search-row input:focus { border-color: #555; }
+  .panel .search-row button {
+    flex: 0 0 54px; padding: 5px 0; border: none; border-radius: 4px;
+    font-size: 11px; cursor: pointer; transition: background .15s; letter-spacing: 0.5px;
+    background: #444; color: #ccc;
+  }
+  .panel .search-row button:hover { background: #555; color: #fff; }
+  .panel .search-row button:disabled { opacity: 0.4; cursor: not-allowed; }
 
   /* ─── picker section label ─── */
   .picker-label { color: #666; font-size: 9px; letter-spacing: 0.5px; margin: 8px 0 4px; }
@@ -82,7 +95,10 @@
 
   .panel .hint { color: #555; font-size: 10px; margin-top: 6px; line-height: 1.5; }
 
-  .panel .btn-reset { background: #2a2a2a; color: #777; font-size: 10px; padding: 6px 0; border: none; border-radius: 4px; cursor: pointer; transition: background .2s; letter-spacing: 0.5px; flex: 0.6; }
+  .panel .btn-undo { background: #3a2a2a; color: #c97; }
+  .panel .btn-undo:hover { background: #4a3a3a; color: #da8; }
+  .panel .btn-undo:disabled { opacity: 0.3; cursor: not-allowed; }
+  .panel .btn-reset { background: #2a2a2a; color: #777; }
   .panel .btn-reset:hover { background: #3a3a3a; color: #aaa; }
 
   .watermark {
@@ -141,11 +157,18 @@
   <div class="row">
     <button class="btn-mark" id="btnMark">标记</button>
     <button class="btn-clear" id="btnClear">清空</button>
-    <button class="btn-reset" id="btnReset">重置</button>
+    
   </div>
-
+  <div class="row">
+    <button class="btn-reset" id="btnReset">重置</button>
+    <button class="btn-undo" id="btnUndo" disabled>撤销</button>
+  </div>
+  <div class="search-row">
+    <input id="searchInput" placeholder="在线搜索城市名…">
+    <button id="btnSearch">查询&amp;增加</button>
+  </div>
   <div class="status" id="status"></div>
-  <div class="hint">中/英文皆可 · 34省份 + 全部地级市/县级市</div>
+  <div class="hint">中/英文皆可 · 全球300+城市</div>
 </div>
 
 <div class="watermark">WORLD MAP<br><span class="credit">by linfeng365</span></div>
@@ -1449,6 +1472,47 @@ setTimeout(() => {
 
 // ─── marker management ───
 let allMarkers = [];
+let undoStack = [];
+let currentGroup = [];
+let undoBtn = document.getElementById('btnUndo');
+
+function addMarkerToMap(lat, lng, name, color, icon, track) {
+  const iconObj = makeIcon(color, icon);
+  const m = L.marker([lat, lng], { icon: iconObj }).addTo(map);
+  const t = L.circleMarker([lat, lng], { radius: 0, opacity: 0 })
+    .bindTooltip(name, { permanent: true, direction: 'right', offset: [0, 0], className: 'country-label' })
+    .addTo(map);
+  const entry = { marker: m, tooltip: t };
+  allMarkers.push(entry);
+  if (track !== false) currentGroup.push(entry);
+}
+
+function commitGroup() {
+  if (currentGroup.length) {
+    undoStack.push(currentGroup);
+    currentGroup = [];
+    undoBtn.disabled = false;
+  }
+}
+
+function undoLast() {
+  if (!undoStack.length) return;
+  const group = undoStack.pop();
+  group.forEach(({ marker, tooltip }) => {
+    map.removeLayer(marker);
+    map.removeLayer(tooltip);
+    for (let i = allMarkers.length - 1; i >= 0; i--) {
+      if (allMarkers[i].marker === marker) { allMarkers.splice(i, 1); break; }
+    }
+  });
+  undoBtn.disabled = !undoStack.length;
+  showStatus('已撤销上一次添加', 'info');
+}
+
+function clearAllMarkers() {
+  allMarkers.forEach(({ marker, tooltip }) => { map.removeLayer(marker); map.removeLayer(tooltip); });
+  allMarkers = []; undoStack = []; currentGroup = []; undoBtn.disabled = true;
+}
 
 function makeIcon(color, icon) {
   if (icon === 'dot') {
@@ -1467,22 +1531,6 @@ function makeIcon(color, icon) {
   return L.divIcon({ html, className: '', iconSize: [24, 24], iconAnchor: [12, 12] });
 }
 
-function addMarkerToMap(lat, lng, name, color, icon) {
-  const iconObj = makeIcon(color, icon);
-  const m = L.marker([lat, lng], { icon: iconObj }).addTo(map);
-  const t = L.circleMarker([lat, lng], { radius: 0, opacity: 0 })
-    .bindTooltip(name, { permanent: true, direction: 'right', offset: [0, 0], className: 'country-label' })
-    .addTo(map);
-  allMarkers.push({ marker: m, tooltip: t });
-}
-
-function clearAllMarkers() {
-  allMarkers.forEach(({ marker, tooltip }) => {
-    map.removeLayer(marker);
-    map.removeLayer(tooltip);
-  });
-  allMarkers = [];
-}
 
 // ─── place defaults ───
 const defaults = [
@@ -1502,7 +1550,7 @@ const defaults = [
   { name: '法国',     lat: 46.60, lng: 1.88, color: '#0984e3', icon: 'dot' },
   { name: '上海市',    lat: 31.23, lng: 121.47, color: '#0984e3', icon: '⭐️' },
 ];
-defaults.forEach(c => addMarkerToMap(c.lat, c.lng, c.name, c.color, c.icon));
+defaults.forEach(c => addMarkerToMap(c.lat, c.lng, c.name, c.color, c.icon, false));
 
 // original colors for easter egg
 const origDefaults = [
@@ -1559,6 +1607,8 @@ function markFromInput(raw) {
     }
   });
 
+  if (added) commitGroup();
+
   const parts = [];
   if (added) parts.push(`已标记 ${added} 个`);
   if (notFound.length) parts.push(`未找到: ${notFound.join(', ')}`);
@@ -1573,12 +1623,63 @@ function showStatus(msg, type) {
   setTimeout(() => { if (el.textContent === msg) el.textContent = ''; }, 4000);
 }
 
+// ─── online search & add via Nominatim ───
+function searchAndAdd(query) {
+  const q = query.trim();
+  if (!q) { showStatus('请输入要搜索的城市名', 'error'); return; }
+
+  // try local DB first
+  const coord = lookup(q);
+  if (coord) {
+    addMarkerToMap(coord[0], coord[1], q, activeColor, activeIcon);
+    commitGroup();
+    showStatus(`已标记: ${q}`, 'ok');
+    document.getElementById('searchInput').value = '';
+    return;
+  }
+
+  showStatus('正在搜索…', 'info');
+
+  fetch(`https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(q)}&limit=1&accept-language=zh`)
+    .then(r => r.json())
+    .then(data => {
+      if (!data || !data.length) {
+        showStatus(`未找到: ${q}`, 'error');
+        return;
+      }
+      const place = data[0];
+      const lat = parseFloat(place.lat);
+      const lng = parseFloat(place.lon);
+      const displayName = place.display_name.split(',')[0] || q;
+      addMarkerToMap(lat, lng, displayName, activeColor, activeIcon);
+      commitGroup();
+      showStatus(`已添加: ${displayName}`, 'ok');
+      document.getElementById('searchInput').value = '';
+    })
+    .catch(() => showStatus('搜索失败，请重试', 'error'));
+}
+
 // ─── ui ───
 let resetState = 0;
 
 document.getElementById('btnMark').addEventListener('click', () => {
   resetState = 0;
   markFromInput(document.getElementById('input').value);
+});
+document.getElementById('btnUndo').addEventListener('click', () => {
+  resetState = 0;
+  undoLast();
+});
+document.getElementById('btnSearch').addEventListener('click', () => {
+  resetState = 0;
+  searchAndAdd(document.getElementById('searchInput').value);
+});
+document.getElementById('searchInput').addEventListener('keydown', e => {
+  if (e.key === 'Enter') {
+    e.preventDefault();
+    resetState = 0;
+    searchAndAdd(e.target.value);
+  }
 });
 document.getElementById('input').addEventListener('keydown', e => {
   if (e.key === 'Enter' && (e.metaKey || e.ctrlKey)) {
@@ -1595,18 +1696,18 @@ document.getElementById('btnClear').addEventListener('click', () => {
 document.getElementById('btnReset').addEventListener('click', () => {
   clearAllMarkers();
   if (resetState === 0) {
-    defaults.forEach(c => addMarkerToMap(c.lat, c.lng, c.name, c.color, c.icon));
+    defaults.forEach(c => addMarkerToMap(c.lat, c.lng, c.name, c.color, c.icon, false));
     resetState = 1;
     showStatus('已重置为默认标记', 'ok');
   } else if (resetState === 1) {
     const sh = defaults.find(c => c.name === '上海市');
-    if (sh) addMarkerToMap(sh.lat, sh.lng, sh.name, sh.color, sh.icon);
+    if (sh) addMarkerToMap(sh.lat, sh.lng, sh.name, sh.color, sh.icon, false);
     resetState = 2;
     showStatus('✨ 只保留上海市', 'ok');
   } else {
-    origDefaults.forEach(c => addMarkerToMap(c.lat, c.lng, c.name, c.color, c.icon));
+    origDefaults.forEach(c => addMarkerToMap(c.lat, c.lng, c.name, c.color, c.icon, false));
     resetState = 0;
-    showStatus('🎨 恢复原始配色', 'ok');
+    showStatus('🎨 红色配色', 'ok');
   }
 });
 </script>
