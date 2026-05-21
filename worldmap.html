@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>World Map</title>
+<title>World Map Markup 在线地图标记</title>
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
 <style>
   * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -111,6 +111,15 @@
     <div class="swatch" data-color="#2ecc71" style="background:#2ecc71" title="绿色"></div>
     <div class="swatch" data-color="#b91d1d" style="background:#b91d1d" title="深红"></div>
     <div class="swatch" data-color="#f1c40f" style="background:#f1c40f" title="黄色"></div>
+  </div>
+  <div class="color-row" style="margin-top:4px">
+    <div class="swatch" data-color="#e67e22" style="background:#e67e22" title="橙色"></div>
+    <div class="swatch" data-color="#e84393" style="background:#e84393" title="粉色"></div>
+    <div class="swatch" data-color="#0984e3" style="background:#0984e3" title="蓝色"></div>
+    <div class="swatch" data-color="#00b894" style="background:#00b894" title="青绿"></div>
+    <div class="swatch" data-color="#6c5ce7" style="background:#6c5ce7" title="靛蓝"></div>
+    <div class="swatch" data-color="#d63031" style="background:#d63031" title="珊瑚"></div>
+    <div class="swatch" data-color="#00cec9" style="background:#00cec9" title="薄荷"></div>
   </div>
 
   <div class="picker-label">图标</div>
@@ -235,6 +244,109 @@ const DB = {
   '叙利亚': [34.81, 39.06], 'syria': [34.81, 39.06],
   '也门': [15.55, 48.52], 'yemen': [15.55, 48.52],
   '塞浦路斯': [35.13, 33.43], 'cyprus': [35.13, 33.43],
+
+  // ─── cities ───
+  '上海': [31.23, 121.47], 'shanghai': [31.23, 121.47],
+  '北京': [39.90, 116.41], 'beijing': [39.90, 116.41], 'peking': [39.90, 116.41],
+  '广州': [23.13, 113.26], 'guangzhou': [23.13, 113.26],
+  '深圳': [22.54, 114.06], 'shenzhen': [22.54, 114.06],
+  '杭州': [30.27, 120.15], 'hangzhou': [30.27, 120.15],
+  '成都': [30.57, 104.07], 'chengdu': [30.57, 104.07],
+  '南京': [32.06, 118.80], 'nanjing': [32.06, 118.80],
+  '武汉': [30.58, 114.30], 'wuhan': [30.58, 114.30],
+  '重庆': [29.56, 106.55], 'chongqing': [29.56, 106.55],
+  '西安': [34.26, 108.94], 'xi\'an': [34.26, 108.94],
+  '香港': [22.32, 114.17], 'hong kong': [22.32, 114.17],
+  '台北': [25.04, 121.51], 'taipei': [25.04, 121.51],
+  '东京': [35.68, 139.69], 'tokyo': [35.68, 139.69],
+  '大阪': [34.69, 135.50], 'osaka': [34.69, 135.50],
+  '首尔': [37.57, 126.98], 'seoul': [37.57, 126.98],
+  '釜山': [35.18, 129.08], 'busan': [35.18, 129.08],
+  '曼谷': [13.76, 100.50], 'bangkok': [13.76, 100.50],
+  '吉隆坡': [3.14, 101.69], 'kuala lumpur': [3.14, 101.69],
+  '雅加达': [-6.21, 106.85], 'jakarta': [-6.21, 106.85],
+  '马尼拉': [14.60, 120.98], 'manila': [14.60, 120.98],
+  '河内': [21.03, 105.83], 'hanoi': [21.03, 105.83],
+  '胡志明市': [10.82, 106.63], 'ho chi minh': [10.82, 106.63],
+  '仰光': [16.87, 96.20], 'yangon': [16.87, 96.20],
+  '金边': [11.57, 104.92], 'phnom penh': [11.57, 104.92],
+  '万象': [17.98, 102.63], 'vientiane': [17.98, 102.63],
+  '新德里': [28.61, 77.23], 'new delhi': [28.61, 77.23], 'delhi': [28.61, 77.23],
+  '孟买': [19.08, 72.88], 'mumbai': [19.08, 72.88], 'bombay': [19.08, 72.88],
+  '班加罗尔': [12.97, 77.56], 'bangalore': [12.97, 77.56],
+  '加尔各答': [22.57, 88.36], 'kolkata': [22.57, 88.36],
+  '迪拜': [25.20, 55.27], 'dubai': [25.20, 55.27],
+  '阿布扎比': [24.45, 54.38], 'abu dhabi': [24.45, 54.38],
+  '利雅得': [24.71, 46.68], 'riyadh': [24.71, 46.68],
+  '多哈': [25.29, 51.53], 'doha': [25.29, 51.53],
+  '德黑兰': [35.69, 51.39], 'tehran': [35.69, 51.39],
+  '伊斯坦布尔': [41.01, 28.98], 'istanbul': [41.01, 28.98],
+  '安卡拉': [39.92, 32.85], 'ankara': [39.92, 32.85],
+  '耶路撒冷': [31.77, 35.22], 'jerusalem': [31.77, 35.22],
+  '特拉维夫': [32.08, 34.78], 'tel aviv': [32.08, 34.78],
+  '伦敦': [51.51, -0.13], 'london': [51.51, -0.13],
+  '巴黎': [48.86, 2.35], 'paris': [48.86, 2.35],
+  '柏林': [52.52, 13.41], 'berlin': [52.52, 13.41],
+  '罗马': [41.89, 12.48], 'rome': [41.89, 12.48],
+  '马德里': [40.42, -3.70], 'madrid': [40.42, -3.70],
+  '里斯本': [38.72, -9.14], 'lisbon': [38.72, -9.14],
+  '阿姆斯特丹': [52.37, 4.90], 'amsterdam': [52.37, 4.90],
+  '布鲁塞尔': [50.85, 4.35], 'brussels': [50.85, 4.35],
+  '维也纳': [48.21, 16.37], 'vienna': [48.21, 16.37],
+  '布拉格': [50.09, 14.42], 'prague': [50.09, 14.42],
+  '华沙': [52.24, 21.01], 'warsaw': [52.24, 21.01],
+  '布达佩斯': [47.50, 19.04], 'budapest': [47.50, 19.04],
+  '雅典': [37.98, 23.73], 'athens': [37.98, 23.73],
+  '斯德哥尔摩': [59.33, 18.07], 'stockholm': [59.33, 18.07],
+  '奥斯陆': [59.91, 10.75], 'oslo': [59.91, 10.75],
+  '哥本哈根': [55.68, 12.57], 'copenhagen': [55.68, 12.57],
+  '赫尔辛基': [60.17, 24.94], 'helsinki': [60.17, 24.94],
+  '都柏林': [53.35, -6.26], 'dublin': [53.35, -6.26],
+  '莫斯科': [55.76, 37.62], 'moscow': [55.76, 37.62],
+  '基辅': [50.45, 30.52], 'kyiv': [50.45, 30.52],
+  '苏黎世': [47.38, 8.54], 'zurich': [47.38, 8.54],
+  '日内瓦': [46.20, 6.14], 'geneva': [46.20, 6.14],
+  '巴塞罗那': [41.39, 2.17], 'barcelona': [41.39, 2.17],
+  '米兰': [45.47, 9.19], 'milan': [45.47, 9.19],
+  '慕尼黑': [48.14, 11.58], 'munich': [48.14, 11.58],
+  '汉堡': [53.55, 10.00], 'hamburg': [53.55, 10.00],
+  '布加勒斯特': [44.43, 26.10], 'bucharest': [44.43, 26.10],
+  '索菲亚': [42.70, 23.32], 'sofia': [42.70, 23.32],
+  '贝尔格莱德': [44.82, 20.46], 'belgrade': [44.82, 20.46],
+  '萨格勒布': [45.81, 15.98], 'zagreb': [45.81, 15.98],
+  '纽约': [40.71, -74.01], 'new york': [40.71, -74.01],
+  '洛杉矶': [34.05, -118.24], 'los angeles': [34.05, -118.24],
+  '芝加哥': [41.88, -87.63], 'chicago': [41.88, -87.63],
+  '旧金山': [37.77, -122.42], 'san francisco': [37.77, -122.42],
+  '华盛顿': [38.91, -77.04], 'washington': [38.91, -77.04], 'washington dc': [38.91, -77.04],
+  '波士顿': [42.36, -71.06], 'boston': [42.36, -71.06],
+  '西雅图': [47.61, -122.33], 'seattle': [47.61, -122.33],
+  '迈阿密': [25.76, -80.19], 'miami': [25.76, -80.19],
+  '休斯顿': [29.76, -95.37], 'houston': [29.76, -95.37],
+  '拉斯维加斯': [36.17, -115.14], 'las vegas': [36.17, -115.14],
+  '多伦多': [43.65, -79.38], 'toronto': [43.65, -79.38],
+  '温哥华': [49.28, -123.12], 'vancouver': [49.28, -123.12],
+  '蒙特利尔': [45.50, -73.57], 'montreal': [45.50, -73.57],
+  '墨西哥城': [19.43, -99.13], 'mexico city': [19.43, -99.13],
+  '圣保罗': [-23.55, -46.63], 'sao paulo': [-23.55, -46.63],
+  '里约热内卢': [-22.91, -43.17], 'rio de janeiro': [-22.91, -43.17],
+  '布宜诺斯艾利斯': [-34.60, -58.38], 'buenos aires': [-34.60, -58.38],
+  '圣地亚哥': [-33.46, -70.65], 'santiago': [-33.46, -70.65],
+  '利马': [-12.05, -77.04], 'lima': [-12.05, -77.04],
+  '波哥大': [4.61, -74.08], 'bogota': [4.61, -74.08],
+  '开罗': [30.04, 31.24], 'cairo': [30.04, 31.24],
+  '拉各斯': [6.46, 3.39], 'lagos': [6.46, 3.39],
+  '内罗毕': [-1.29, 36.82], 'nairobi': [-1.29, 36.82],
+  '约翰内斯堡': [-26.20, 28.05], 'johannesburg': [-26.20, 28.05],
+  '开普敦': [-33.92, 18.42], 'cape town': [-33.92, 18.42],
+  '卡萨布兰卡': [33.57, -7.58], 'casablanca': [33.57, -7.58],
+  '亚的斯亚贝巴': [9.03, 38.75], 'addis ababa': [9.03, 38.75],
+  '悉尼': [-33.87, 151.21], 'sydney': [-33.87, 151.21],
+  '墨尔本': [-37.81, 144.96], 'melbourne': [-37.81, 144.96],
+  '布里斯班': [-27.47, 153.03], 'brisbane': [-27.47, 153.03],
+  '珀斯': [-31.95, 115.86], 'perth': [-31.95, 115.86],
+  '奥克兰': [-36.85, 174.76], 'auckland': [-36.85, 174.76],
+  '惠灵顿': [-41.29, 174.78], 'wellington': [-41.29, 174.78],
 };
 
 function lookup(name) {
@@ -271,16 +383,12 @@ function makeIcon(color, icon) {
   if (icon === 'dot') {
     const svg = `<svg width="14" height="14" viewBox="0 0 14 14" xmlns="http://www.w3.org/2000/svg">
       <circle cx="7" cy="7" r="5" fill="${color}" stroke="#fff" stroke-width="2"/>
-      <circle cx="7" cy="7" r="5" fill="${color}" stroke="${color}" stroke-width="1" opacity="0.25" filter="url(#a)"/>
-      <defs><filter id="a"><feGaussianBlur stdDeviation="2"/></filter></defs>
     </svg>`;
     return L.divIcon({ html: svg, className: '', iconSize: [14, 14], iconAnchor: [7, 7] });
   }
-  // emoji icon with colored glow
-  const glow = color === '#f1c40f' ? 'rgba(0,0,0,0.4)' : color;
+  // emoji icon
   const html = `<div style="
     font-size:20px;line-height:1;text-align:center;
-    text-shadow:0 0 12px ${glow}, 0 0 4px rgba(0,0,0,0.6);
     transform:translate(-50%,-50%);
     pointer-events:none;
   ">${icon}</div>`;
@@ -374,23 +482,36 @@ function showStatus(msg, type) {
 }
 
 // ─── ui ───
+let resetState = 0;
+
 document.getElementById('btnMark').addEventListener('click', () => {
+  resetState = 0;
   markFromInput(document.getElementById('input').value);
 });
 document.getElementById('input').addEventListener('keydown', e => {
   if (e.key === 'Enter' && (e.metaKey || e.ctrlKey)) {
     e.preventDefault();
+    resetState = 0;
     markFromInput(e.target.value);
   }
 });
 document.getElementById('btnClear').addEventListener('click', () => {
+  resetState = 0;
   clearAllMarkers();
   showStatus('已清空所有标记', 'info');
 });
 document.getElementById('btnReset').addEventListener('click', () => {
   clearAllMarkers();
-  defaults.forEach(c => addMarkerToMap(c.lat, c.lng, c.name, c.color, c.icon));
-  showStatus('已重置为默认标记', 'ok');
+  if (resetState === 0) {
+    defaults.forEach(c => addMarkerToMap(c.lat, c.lng, c.name, c.color, c.icon));
+    resetState = 1;
+    showStatus('已重置为默认标记', 'ok');
+  } else {
+    const sh = defaults.find(c => c.name === '上海市');
+    if (sh) addMarkerToMap(sh.lat, sh.lng, sh.name, sh.color, sh.icon);
+    resetState = 0;
+    showStatus('✨ 只保留上海市', 'ok');
+  }
 });
 </script>
 </body>
